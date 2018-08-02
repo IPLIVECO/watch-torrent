@@ -33,7 +33,7 @@ exports.index = (req, res) => {
 
     engine.on('ready', () => {
 
-        let file = engine.files.filter(file => file.name.indexOf('.mp4') !== -1)[0];
+        let file = engine.files.filter(file => file.name.indexOf('.mp4') || file.name.indexOf('.mkv') !== -1)[0];
 
         let movieFileName = file.name;
         let extension = movieFileName.replace(/.*\./, '');
@@ -48,6 +48,9 @@ exports.index = (req, res) => {
                 break;
             case 'mp4':
                 contentType = 'video/mp4';
+                break;
+            case 'mkv':
+                contentType = 'video/mkv';
                 break;
         }
 
